@@ -19,6 +19,22 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'static.openfoodfacts.org',
       },
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'rukminim1.flixcart.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'rukminim2.flixcart.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.googleusercontent.com',
+      },
     ],
   },
 };

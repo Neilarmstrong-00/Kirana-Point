@@ -72,7 +72,7 @@ export default function AdminProductsPage() {
             Product Catalog
           </h1>
           <p className="text-xs text-gray-500">
-            Manage your store's inventory, prices, Open Food Facts data, and descriptions.
+            Manage your store&apos;s inventory, prices, Open Food Facts data, and descriptions.
           </p>
         </div>
 

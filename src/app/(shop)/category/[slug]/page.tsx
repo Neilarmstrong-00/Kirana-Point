@@ -25,7 +25,7 @@ export default function CategoryProductsPage() {
     async function loadData() {
       setLoading(true);
       const [categories, products] = await Promise.all([getCategories(), getProducts()]);
-      const cat = categories.find((c) => c.slug === slug);
+      const cat = categories.find((c) => c.slug === slug || c.id === slug);
       setCategory(cat || null);
       setAllProducts(products);
       setLoading(false);

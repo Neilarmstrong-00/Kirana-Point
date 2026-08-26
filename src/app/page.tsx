@@ -160,7 +160,7 @@ export default function HomePage() {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-base sm:text-xl font-extrabold text-gray-900">
-                  Today's Super Deals
+                  Today&apos;s Super Deals
                 </h2>
                 <span className="text-[9px] sm:text-[10px] font-extrabold uppercase px-2 py-0.5 bg-accent-100 text-accent-dark rounded-full">
                   Up to 30% OFF

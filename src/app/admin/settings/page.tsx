@@ -246,7 +246,7 @@ export default function AdminSettingsPage() {
               className="w-full sm:w-1/2 text-xs p-2.5 rounded-xl border border-gray-200 focus:border-primary outline-none font-mono"
             />
             <p className="text-[11px] text-gray-400 mt-1">
-              Used when customers click "Message Store on WhatsApp".
+              Used when customers click &quot;Message Store on WhatsApp&quot;.
             </p>
           </div>
         </div>

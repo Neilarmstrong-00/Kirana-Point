@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -35,17 +35,18 @@ export default function AdminOrderDetailPage() {
   const [config, setConfig] = useState<StoreConfig | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
+    if (!orderId) return;
     setLoading(true);
     const [ord, conf] = await Promise.all([getOrderById(orderId), getStoreConfig()]);
     setOrder(ord);
     setConfig(conf);
     setLoading(false);
-  };
+  }, [orderId]);
 
   useEffect(() => {
     loadData();
-  }, [orderId]);
+  }, [loadData]);
 
   if (loading) {
     return (

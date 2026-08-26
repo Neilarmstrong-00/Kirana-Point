@@ -93,6 +93,7 @@ export function LocationMap({
         mapInstanceRef.current = null;
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const reverseGeocode = async (lat: number, lng: number) => {

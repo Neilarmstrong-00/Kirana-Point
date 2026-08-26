@@ -1,12 +1,18 @@
 {
-  "name": "Kirana Point",
+  "name": "Kirana Point — Neighbourhood Grocery Store",
   "short_name": "KiranaPoint",
-  "description": "Your neighbourhood store, now online",
+  "description": "Order fresh groceries, staples, atta, rice, dairy, oils, and snacks in Khamgaon with same-day doorstep delivery.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FAFAFA",
   "theme_color": "#2D7A3A",
   "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",

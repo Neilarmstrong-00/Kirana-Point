@@ -1,0 +1,16 @@
+{
+  "name": "Kirana Point",
+  "short_name": "KiranaPoint",
+  "description": "Your neighbourhood store, now online",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#2D7A3A",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

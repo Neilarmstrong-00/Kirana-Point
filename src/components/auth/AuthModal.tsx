@@ -68,15 +68,18 @@ export function AuthModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="bg-white w-full max-w-md rounded-3xl border border-gray-100 shadow-2xl p-6 sm:p-7 relative space-y-4 max-h-[90vh] overflow-y-auto"
+        className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl border border-gray-100 shadow-2xl p-5 sm:p-7 relative space-y-3.5 max-h-[92vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Mobile Pull Handle */}
+        <div className="w-10 h-1 rounded-full bg-gray-200 mx-auto sm:hidden" />
+
         {/* Close Button */}
         <button
           onClick={closeAuthModal}
-          className="absolute top-5 right-5 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition-colors"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 transition-colors"
         >
           <X className="w-4 h-4" />
         </button>

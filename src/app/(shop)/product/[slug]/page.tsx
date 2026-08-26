@@ -280,6 +280,32 @@ export default function ProductDetailPage() {
           </div>
         </div>
       )}
+
+      {/* Mobile Sticky Bottom CTA Bar */}
+      <div className="sm:hidden fixed bottom-14 left-0 right-0 p-3 bg-white/95 backdrop-blur-md border-t border-gray-200 z-30 shadow-lg flex items-center justify-between gap-3">
+        <div>
+          <span className="text-xs text-gray-500 block">Total Price</span>
+          <span className="text-base font-extrabold text-gray-900">
+            {formatCurrency(product.sellingPrice * quantity)}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          disabled={isOutOfStock}
+          onClick={handleAddToCart}
+          className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark active:scale-95 text-white py-2.5 px-4 rounded-xl font-bold text-xs shadow-md shadow-primary/20 transition-all disabled:bg-gray-200 disabled:text-gray-400"
+        >
+          <ShoppingBag className="w-4 h-4" />
+          <span>
+            {isOutOfStock
+              ? 'Out of Stock'
+              : inCartQty > 0
+              ? `Add More (${inCartQty} in Cart)`
+              : `Add ${quantity} to Cart`}
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

@@ -70,7 +70,7 @@ export default function CartPage() {
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 items-start">
           {/* Left 2 Cols: Free Delivery Bar & Items List */}
           <div className="lg:col-span-2 space-y-3">
             <FreeDeliveryBar subtotal={subtotal} />

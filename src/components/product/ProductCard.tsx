@@ -88,14 +88,14 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {/* Content */}
-      <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between">
+      <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between">
         <div>
           {/* Brand & Unit */}
-          <div className="flex items-center justify-between text-[11px] text-gray-500 mb-1">
-            <span className="font-semibold text-primary uppercase tracking-wider truncate max-w-[120px]">
+          <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-gray-500 mb-1 gap-1">
+            <span className="font-semibold text-primary uppercase tracking-wider truncate max-w-[80px] sm:max-w-[120px]">
               {product.brand}
             </span>
-            <span className="bg-gray-100 font-medium px-2 py-0.5 rounded-md text-gray-700">
+            <span className="bg-gray-100 font-medium px-1.5 sm:px-2 py-0.5 rounded-md text-gray-700 shrink-0">
               {product.unitValue} {product.unit}
             </span>
           </div>
@@ -110,19 +110,19 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Pricing & Add to Cart Counter */}
-        <div className="mt-3 pt-3 border-t border-gray-50 flex items-center justify-between gap-2">
+        <div className="mt-2.5 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-50 flex items-center justify-between gap-1.5">
           <div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-sm sm:text-base font-extrabold text-gray-900">
+            <div className="flex items-baseline gap-1">
+              <span className="text-xs sm:text-base font-extrabold text-gray-900">
                 {formatCurrency(product.sellingPrice)}
               </span>
               {product.mrp > product.sellingPrice && (
-                <span className="text-xs text-gray-400 line-through">
+                <span className="text-[10px] sm:text-xs text-gray-400 line-through">
                   {formatCurrency(product.mrp)}
                 </span>
               )}
             </div>
-            <p className="text-[10px] text-emerald-600 font-medium">
+            <p className="text-[9px] sm:text-[10px] text-emerald-600 font-medium">
               Save {formatCurrency(product.mrp - product.sellingPrice)}
             </p>
           </div>
@@ -132,37 +132,37 @@ export function ProductCard({ product }: ProductCardProps) {
             {isOutOfStock ? (
               <button
                 disabled
-                className="px-3 py-1.5 rounded-xl bg-gray-100 text-gray-400 text-xs font-semibold cursor-not-allowed"
+                className="px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-gray-100 text-gray-400 text-[10px] sm:text-xs font-semibold cursor-not-allowed"
               >
                 Sold Out
               </button>
             ) : quantityInCart > 0 ? (
-              <div className="flex items-center gap-1.5 bg-primary-50 border border-primary-200 rounded-xl p-0.5">
+              <div className="flex items-center gap-1 bg-primary-50 border border-primary-200 rounded-xl p-0.5">
                 <button
                   onClick={handleDecrement}
                   aria-label="Decrease quantity"
-                  className="w-7 h-7 rounded-lg bg-white text-primary flex items-center justify-center font-bold shadow-xs hover:bg-primary-100 active:scale-95 transition-all"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-white text-primary flex items-center justify-center font-bold shadow-xs hover:bg-primary-100 active:scale-95 transition-all"
                 >
-                  <Minus className="w-3.5 h-3.5" />
+                  <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 </button>
-                <span className="text-xs font-extrabold text-primary w-5 text-center">
+                <span className="text-xs font-extrabold text-primary w-4 sm:w-5 text-center">
                   {quantityInCart}
                 </span>
                 <button
                   onClick={handleIncrement}
                   aria-label="Increase quantity"
                   disabled={quantityInCart >= product.stockQuantity}
-                  className="w-7 h-7 rounded-lg bg-primary text-white flex items-center justify-center font-bold shadow-xs hover:bg-primary-dark active:scale-95 transition-all disabled:opacity-50"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-primary text-white flex items-center justify-center font-bold shadow-xs hover:bg-primary-dark active:scale-95 transition-all disabled:opacity-50"
                 >
-                  <Plus className="w-3.5 h-3.5" />
+                  <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 </button>
               </div>
             ) : (
               <button
                 onClick={handleAdd}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white hover:bg-primary-dark active:scale-95 transition-all text-xs font-bold shadow-xs shadow-primary/20"
+                className="flex items-center gap-1 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-primary text-white hover:bg-primary-dark active:scale-95 transition-all text-xs font-bold shadow-xs shadow-primary/20"
               >
-                <Plus className="w-3.5 h-3.5" />
+                <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 <span>Add</span>
               </button>
             )}

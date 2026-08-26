@@ -207,11 +207,11 @@ export default function CheckoutPage() {
         </p>
       </div>
 
-      <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-8 items-start">
         {/* Left 2 Columns: Checkout Steps */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-4 sm:space-y-6">
           {/* Step 1: Delivery Mode */}
-          <div className="bg-white rounded-3xl border border-gray-100 p-5 sm:p-6 shadow-xs space-y-4">
+          <div className="bg-white rounded-3xl border border-gray-100 p-4 sm:p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">
                 1
@@ -224,7 +224,7 @@ export default function CheckoutPage() {
 
           {/* Step 2: Address & Location Map (if Delivery) */}
           {deliveryType === 'delivery' && (
-            <div className="bg-white rounded-3xl border border-gray-100 p-5 sm:p-6 shadow-xs space-y-4">
+            <div className="bg-white rounded-3xl border border-gray-100 p-4 sm:p-6 shadow-xs space-y-4">
               <div className="flex items-center gap-2">
                 <div className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">
                   2
@@ -245,7 +245,7 @@ export default function CheckoutPage() {
           )}
 
           {/* Step 3: Customer Contact (for WhatsApp Invoice) */}
-          <div className="bg-white rounded-3xl border border-gray-100 p-5 sm:p-6 shadow-xs space-y-4">
+          <div className="bg-white rounded-3xl border border-gray-100 p-4 sm:p-6 shadow-xs space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">
                 {deliveryType === 'delivery' ? 3 : 2}

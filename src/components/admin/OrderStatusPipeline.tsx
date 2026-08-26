@@ -63,7 +63,7 @@ export function OrderStatusPipeline({
 
       {/* Stepper visualization */}
       {!isCancelled && (
-        <div className="grid grid-cols-4 gap-2 pt-2">
+        <div className="grid grid-cols-4 gap-1.5 sm:gap-2 pt-2">
           {steps.map((step, idx) => {
             const stepIndex = statusOrder.indexOf(step.key);
             const isCompleted = currentIndex >= stepIndex;
@@ -73,7 +73,7 @@ export function OrderStatusPipeline({
             return (
               <div
                 key={step.key}
-                className={`p-3 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1.5 ${
+                className={`p-2 sm:p-3 rounded-xl border text-center transition-all flex flex-col items-center justify-center gap-1 sm:gap-1.5 ${
                   isCurrent
                     ? 'bg-primary-50 border-primary shadow-xs ring-2 ring-primary/20'
                     : isCompleted
@@ -82,7 +82,7 @@ export function OrderStatusPipeline({
                 }`}
               >
                 <div
-                  className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs ${
+                  className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center text-xs ${
                     isCurrent
                       ? 'bg-primary text-white'
                       : isCompleted
@@ -90,9 +90,9 @@ export function OrderStatusPipeline({
                       : 'bg-gray-200 text-gray-500'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
-                <span className="text-[11px] font-bold tracking-tight text-gray-900">
+                <span className="text-[9px] sm:text-[11px] font-bold tracking-tight text-gray-900 leading-tight">
                   {step.label}
                 </span>
               </div>

@@ -227,29 +227,6 @@ export function Header() {
                           ⚡ Admin Dashboard
                         </Link>
                       )}
-                      <div className="border-t border-gray-100 my-1 pt-1">
-                        <div className="px-4 py-1.5 text-[11px] text-gray-400 font-medium">
-                          Quick Switch Demo User:
-                        </div>
-                        <button
-                          onClick={() => {
-                            loginAsAdmin();
-                            setIsUserMenuOpen(false);
-                          }}
-                          className="w-full text-left px-4 py-1 text-xs text-gray-600 hover:bg-gray-50"
-                        >
-                          Switch to 🛡️ Store Admin
-                        </button>
-                        <button
-                          onClick={() => {
-                            loginAsCustomer();
-                            setIsUserMenuOpen(false);
-                          }}
-                          className="w-full text-left px-4 py-1 text-xs text-gray-600 hover:bg-gray-50"
-                        >
-                          Switch to 👤 Customer (Rahul)
-                        </button>
-                      </div>
                       <button
                         onClick={() => {
                           logout();

@@ -8,55 +8,44 @@ import {
   Store,
   Mail,
   Lock,
-  Sparkles,
   ArrowRight,
   ShieldCheck,
   User,
-  KeyRound,
-  CheckCircle2,
 } from 'lucide-react';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login, loginAsAdmin, loginAsCustomer } = useAuthStore();
+  const { login } = useAuthStore();
 
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [loginMode, setLoginMode] = useState<'all' | 'admin' | 'customer'>('all');
+  const [error, setError] = useState('');
 
   // Live detection of admin vs customer role
   const isDetectedAdmin =
     identifier.trim().toLowerCase() === 'pratham@kiranapoint.com' ||
     identifier.trim().toLowerCase() === 'admin@kiranapoint.com' ||
     identifier.trim().toLowerCase() === '8208232735' ||
-    identifier.trim().toLowerCase().includes('admin') ||
-    identifier.trim().toLowerCase().includes('pratham') ||
-    password === 'admin123';
+    identifier.trim().toLowerCase().includes('admin');
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!identifier.trim()) return;
+    setError('');
     setLoading(true);
     try {
-      const user = await login(identifier, password);
+      const user = await login(identifier.trim(), password);
       if (user.role === 'admin') {
         router.push('/admin');
       } else {
         router.push('/');
       }
+    } catch (err: any) {
+      setError(err?.message || 'Invalid email/phone or password. Please try again.');
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleAdminQuickFill = () => {
-    setIdentifier('pratham@kiranapoint.com');
-    setPassword('admin123');
-  };
-
-  const handleCustomerQuickFill = () => {
-    setIdentifier('rahul.sharma@example.com');
-    setPassword('customer123');
   };
 
   return (
@@ -67,45 +56,53 @@ export default function LoginPage() {
           <Store className="w-7 h-7" />
         </div>
         <h1 className="font-serif text-2xl sm:text-3xl font-bold text-gray-900">
-          Kirana Point Login
+          Welcome to Kirana Point
         </h1>
         <p className="text-xs text-gray-500">
-          Sign in to access your account. System auto-detects Admin vs Customer roles.
+          Sign in to manage your orders, saved addresses, and faster checkout.
         </p>
       </div>
 
       {/* Login Card */}
       <div className="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-xs space-y-5">
         {/* Role Detection Banner */}
-        <div
-          className={`p-3 rounded-2xl border text-xs flex items-center gap-2.5 transition-all ${
-            isDetectedAdmin
-              ? 'bg-amber-50 border-amber-200 text-amber-900'
-              : 'bg-emerald-50 border-emerald-200 text-emerald-900'
-          }`}
-        >
-          {isDetectedAdmin ? (
-            <>
-              <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0" />
-              <div>
-                <span className="font-bold block">👑 Store Owner / Admin Mode Detected</span>
-                <span className="text-[11px] text-amber-700">
-                  Logging in will redirect to <strong>Admin Dashboard & Store Controls</strong>.
-                </span>
-              </div>
-            </>
-          ) : (
-            <>
-              <User className="w-5 h-5 text-emerald-600 shrink-0" />
-              <div>
-                <span className="font-bold block">👤 Customer Mode</span>
-                <span className="text-[11px] text-emerald-700">
-                  Logging in will open the <strong>Grocery Shopping Storefront</strong>.
-                </span>
-              </div>
-            </>
-          )}
-        </div>
+        {identifier.trim().length > 2 && (
+          <div
+            className={`p-3 rounded-2xl border text-xs flex items-center gap-2.5 transition-all ${
+              isDetectedAdmin
+                ? 'bg-amber-50 border-amber-200 text-amber-900'
+                : 'bg-emerald-50 border-emerald-200 text-emerald-900'
+            }`}
+          >
+            {isDetectedAdmin ? (
+              <>
+                <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0" />
+                <div>
+                  <span className="font-bold block">Store Owner / Admin Portal</span>
+                  <span className="text-[11px] text-amber-700">
+                    Signing in will open the <strong>Store Management Console</strong>.
+                  </span>
+                </div>
+              </>
+            ) : (
+              <>
+                <User className="w-5 h-5 text-emerald-600 shrink-0" />
+                <div>
+                  <span className="font-bold block">Customer Account</span>
+                  <span className="text-[11px] text-emerald-700">
+                    Signing in will open the <strong>Grocery Shopping Storefront</strong>.
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
+        {error && (
+          <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700">
+            {error}
+          </div>
+        )}
 
         {/* Form */}
         <form onSubmit={handleLogin} className="space-y-4">
@@ -119,7 +116,7 @@ export default function LoginPage() {
                 required
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
-                placeholder="e.g. pratham@kiranapoint.com or 8208232735"
+                placeholder="Enter your registered email or phone"
                 className="w-full text-xs p-3 pl-9 rounded-xl border border-gray-200 focus:border-primary outline-none"
               />
               <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -129,7 +126,6 @@ export default function LoginPage() {
           <div>
             <div className="flex justify-between items-center mb-1">
               <label className="block text-xs font-semibold text-gray-700">Password</label>
-              <span className="text-[10px] text-gray-400">Admin default: admin123</span>
             </div>
             <div className="relative">
               <input
@@ -137,7 +133,7 @@ export default function LoginPage() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder="Enter your account password"
                 className="w-full text-xs p-3 pl-9 rounded-xl border border-gray-200 focus:border-primary outline-none"
               />
               <Lock className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -151,54 +147,18 @@ export default function LoginPage() {
           >
             <span>
               {loading
-                ? 'Authenticating...'
+                ? 'Signing in...'
                 : isDetectedAdmin
-                ? 'Sign In to Admin Dashboard'
+                ? 'Sign In to Store Admin Console'
                 : 'Sign In to Kirana Point'}
             </span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
-
-        <div className="relative my-4">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-100" />
-          </div>
-          <div className="relative flex justify-center text-[10px] uppercase font-bold text-gray-400 bg-white px-2">
-            Quick Auto-Fill Credentials
-          </div>
-        </div>
-
-        {/* 1-Click Fillers */}
-        <div className="grid grid-cols-2 gap-2.5">
-          <button
-            type="button"
-            onClick={handleAdminQuickFill}
-            className="p-3 rounded-xl border border-amber-200 bg-amber-50/40 hover:bg-amber-100/50 text-left transition-colors group"
-          >
-            <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900 mb-0.5">
-              <ShieldCheck className="w-4 h-4 text-amber-600" />
-              <span>Owner / Admin</span>
-            </div>
-            <p className="text-[10px] text-amber-700 font-mono">pratham@kiranapoint.com</p>
-          </button>
-
-          <button
-            type="button"
-            onClick={handleCustomerQuickFill}
-            className="p-3 rounded-xl border border-emerald-200 bg-emerald-50/40 hover:bg-emerald-100/50 text-left transition-colors group"
-          >
-            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-900 mb-0.5">
-              <User className="w-4 h-4 text-emerald-600" />
-              <span>Customer User</span>
-            </div>
-            <p className="text-[10px] text-emerald-700 font-mono">rahul.sharma@example.com</p>
-          </button>
-        </div>
       </div>
 
       <p className="text-center text-xs text-gray-500">
-        New customer?{' '}
+        Don&apos;t have an account?{' '}
         <Link href="/register" className="font-bold text-primary hover:underline">
           Create customer account
         </Link>

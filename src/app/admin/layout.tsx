@@ -50,21 +50,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
 
           <div className="space-y-2.5">
-            <button
-              type="button"
-              onClick={loginAsAdmin}
-              className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white py-3 px-4 rounded-xl text-xs font-bold transition-all shadow-xs"
-            >
-              <KeyRound className="w-4 h-4" />
-              <span>Sign In as Store Owner (Pratham Tarde)</span>
-            </button>
-
             <Link
               href="/login"
-              className="w-full flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl border border-gray-200 text-gray-700 hover:bg-gray-50 text-xs font-bold transition-colors"
+              className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white py-3 px-4 rounded-xl text-xs font-bold transition-all shadow-xs"
             >
-              <Lock className="w-3.5 h-3.5" />
-              <span>Go to Login Screen</span>
+              <Lock className="w-4 h-4" />
+              <span>Sign In to Admin Account</span>
             </Link>
 
             <Link

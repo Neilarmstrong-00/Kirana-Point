@@ -214,7 +214,7 @@ export function AdminSidebar() {
             <span>Go to Customer Store</span>
           </Link>
           <p className="text-[10px] text-slate-500 text-center mt-2.5">
-            Kirana Point v1.0 • 100% Free Stack
+            Kirana Point Store Management Portal
           </p>
         </div>
       </aside>
